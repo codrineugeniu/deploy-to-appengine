@@ -15,12 +15,29 @@
 # [START gae_flex_quickstart_yaml]
 runtime: nodejs
 env: flex
+service: test-service
 runtime_config:
   operating_system: ubuntu22
 # This sample incurs costs to run on the App Engine flexible environment.
 # The settings below are to reduce costs during testing and are not appropriate
 # for production use. For more information, see:
 # https://cloud.google.com/appengine/docs/flexible/nodejs/configuring-your-app-with-app-yaml
+liveness_check:
+  path: "/health/liveness"
+  check_interval_sec: 30
+  timeout_sec: 4
+  failure_threshold: 10
+  success_threshold: 2
+  initial_delay_sec: 1200
+
+readiness_check:
+  path: "/health/readiness"
+  check_interval_sec: 5
+  timeout_sec: 4
+  failure_threshold: 2
+  success_threshold: 2
+  app_start_timeout_sec: 1200
+  
 manual_scaling:
   instances: 1
 resources:

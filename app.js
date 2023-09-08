@@ -19,6 +19,9 @@ const express = require('express');
 
 const app = express();
 
+app.get('/health/readiness', (req, res) => res.sendStatus(200));
+app.get('/health/liveness', (req, res) => res.sendStatus(200));
+
 app.get('/', (req, res) => {
   res.status(200).send('Hello, world!').end();
 });
