@@ -1,8 +1,9 @@
 name: Build and Deploy to App Engine
 run-name: Deploy to App Engine by @${{ github.actor }}
 on:
-  push:
-    branches: [ "gcp-deploy" ]
+  workflow_dispatch: 
+  # push:
+  #   branches: [ "gcp-deploy" ]
 
 jobs:
   build-image-and-deploy:
