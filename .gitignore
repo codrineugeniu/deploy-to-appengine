@@ -13,3 +13,4 @@ package-lock.json
 .envrc
 
 .DS_Store
+dist/
