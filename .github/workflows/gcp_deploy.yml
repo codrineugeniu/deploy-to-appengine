@@ -1,17 +1,22 @@
 name: Build and Deploy to App Engine
 run-name: Deploy to App Engine by @${{ github.actor }}
 on:
-  push:
-    branches: [ "gcp-deploy" ]
+  workflow_dispatch: 
+  # push:
+  #   branches: [ "gcp-deploy" ]
 
 jobs:
   build-image-and-deploy:
-    runs-on: ubuntu@latest
+    runs-on: ubuntu-latest
     environment: staging
+
     permissions:
       contents: 'read'
       id-token: 'write'
-    steps:      
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: 'Google auth'
         id: 'auth'
         uses: 'google-github-actions/auth@v1'
@@ -24,6 +29,7 @@ jobs:
         uses: 'google-github-actions/deploy-appengine@v1'
         with: 
           project_id: '${{ secrets.GCLOUD_PROJECT_ID }}'
+          deliverables: app.yaml
           
 
 
