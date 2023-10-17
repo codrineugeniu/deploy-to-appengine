@@ -1,9 +1,9 @@
 name: Build and Deploy to App Engine
-run-name: Deploy to App Engine by @${{ github.actor }}
-on:
-  workflow_dispatch: 
+run-name: Deploy service to App Engine by @${{ github.actor }}
+on: 
   # push:
   #   branches: [ "gcp-deploy" ]
+  workflow_dispatch:
 
 jobs:
   build-image-and-deploy:
@@ -21,14 +21,14 @@ jobs:
         id: 'auth'
         uses: 'google-github-actions/auth@v1'
         with:
-          workload_identity_provider: '${{ secrets.WIF_PROVIDER }}'
-          service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}'
+          workload_identity_provider: '${{ vars.WIF_PROVIDER }}'
+          service_account: '${{ vars.WIF_SERVICE_ACCOUNT }}'
 
       - name: 'Deploy to App Engine'
         id: 'deploy'
         uses: 'google-github-actions/deploy-appengine@v1'
         with: 
-          project_id: '${{ secrets.GCLOUD_PROJECT_ID }}'
+          project_id: '${{ vars.GCLOUD_PROJECT_ID }}'
           deliverables: app.yaml
           
 
