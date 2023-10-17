@@ -15,7 +15,7 @@
 # [START gae_flex_quickstart_yaml]
 runtime: nodejs
 env: flex
-service: test-service
+service: default
 runtime_config:
   operating_system: ubuntu22
 # This sample incurs costs to run on the App Engine flexible environment.
