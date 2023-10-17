@@ -27,6 +27,8 @@ jobs:
       - name: 'Deploy to App Engine'
         id: 'deploy'
         uses: 'google-github-actions/deploy-appengine@v1'
+        env:
+          CLOUDSDK_APP_CLOUD_BUILD_TIMEOUT: 600
         with: 
           project_id: '${{ vars.GCLOUD_PROJECT_ID }}'
           deliverables: app.yaml
